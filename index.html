@@ -17,12 +17,16 @@
 <body>
     <header>
         <nav>
-            <div class="container-logo">
-                <div class="logo"><i class="fa-solid fa-code"></i></div>
-                <div class="text-logo">Abdelrahman</div>
-            </div>
+            <!-- burger icon on left -->
+            <button class="burger" id="burger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
-            <ul class="nav-list">
+            <!-- name/logo on right -->
+            <div class="text-logo"><i class="fa-solid fa-code"></i> Abdelrahman</div>
+
+            <!-- nav links -->
+            <ul class="nav-list" id="nav-list">
                 <li><a href="#home" data-target="home" class="nav-link">home</a></li>
                 <li><a href="#skills" data-target="skills" class="nav-link">skills</a></li>
                 <li><a href="#projects" data-target="projects" class="nav-link">projects</a></li>
@@ -30,10 +34,12 @@
                 <li><a href="#contact" data-target="contact" class="nav-link">contact</a></li>
             </ul>
 
+            <!-- actions (hidden on mobile) -->
             <div class="nav-actions">
                 <button id="btn-contact" class="btn-nav">get in touch</button>
             </div>
         </nav>
+
     </header>
 
     <!-- content wrapper -->
@@ -41,7 +47,9 @@
         <!-- Home -->
         <section id="home" class="page">
             <div class="text-main">
-                <h1>software developer</h1>
+                <h1 class="animated-title">
+                    <span>Software</span> <span>Developer</span>
+                </h1>
                 <p>
                     passionate about building full-stack web applications that are innovative, polished, and
                     user-friendly.
@@ -99,7 +107,7 @@
                     <h3>Git</h3>
                 </div>
                 <div class="skill-box"><i class="fa-brands fa-figma"></i></i>
-                    <h3>Git</h3>
+                    <h3>Figma</h3>
                 </div>
             </div>
         </section>

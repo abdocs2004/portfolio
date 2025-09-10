@@ -164,11 +164,35 @@ nav {
     max-width: 60%
 }
 
-#home h1 {
-    font-size: 44px;
-    text-transform: capitalize;
-    margin-bottom: 12px
+.animated-title {
+  font-size: 44px;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: flex;
+  gap: 12px; /* مسافة بين الكلمات */
 }
+
+.animated-title span {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s forwards;
+}
+
+.animated-title span:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.animated-title span:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 
 #home p {
     color: rgba(240, 248, 255, 0.78);
@@ -454,4 +478,62 @@ nav {
     /* simplify nav on small screens (you can add burger later) */
 }
 
-/* make sure pages that are not visible don't interfere (already absolute). */
+/* Burger hidden on large screens */
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive (mobile) */
+@media (max-width: 900px) {
+  nav {
+    justify-content: space-between;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .text-logo {
+    margin-left: auto;
+    font-weight: 600;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 74px; /* height of header */
+    left: 0;
+    width: 100%;
+    background: var(--bg);
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .nav-list.show {
+    display: flex;
+  }
+  #home {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #home .img-main {
+    order: -1; /* يخلي الصورة تيجي قبل النص */
+    margin-bottom: 20px;
+  }
+
+  #home .text-main {
+    max-width: 100%;
+    text-align: center;
+  }
+}

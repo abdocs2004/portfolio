@@ -102,3 +102,11 @@ document.getElementById('btn-two').addEventListener('click', () => {
 document.getElementById('btn-nav').addEventListener('click', () => {
     window.open(cvLink, '_blank');
 });
+
+// Burger menu toggle
+const burger = document.getElementById('burger');
+const navList = document.getElementById('nav-list');
+
+burger.addEventListener('click', () => {
+  navList.classList.toggle('show');
+});
