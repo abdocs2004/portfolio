@@ -108,5 +108,5 @@ const burger = document.getElementById('burger');
 const navList = document.getElementById('nav-list');
 
 burger.addEventListener('click', () => {
-  navList.classList.toggle('show');
+    navList.classList.toggle('show');
 });
