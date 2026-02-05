@@ -1,0 +1,383 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+
+const cvLink =
+  "https://drive.google.com/file/d/1xFcEMw-3qYbMzvJTF1kdKdGI75WCw32x/view?usp=drive_link";
+
+export default function Home() {
+  const pages = useMemo(
+    () => ["home", "skills", "projects", "trainings", "contact"],
+    []
+  );
+  const [currentPage, setCurrentPage] = useState("home");
+  const [exitingPage, setExitingPage] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const showPage = (targetId) => {
+    if (!pages.includes(targetId)) return;
+    if (targetId === currentPage) return;
+    setExitingPage(currentPage);
+    setCurrentPage(targetId);
+    setMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const hash = (window.location.hash || "#home").replace("#", "");
+    if (pages.includes(hash)) {
+      setCurrentPage(hash);
+    }
+  }, [pages]);
+
+  useEffect(() => {
+    window.history.replaceState(null, "", `#${currentPage}`);
+  }, [currentPage]);
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      const key = e.key.toLowerCase();
+      if (key === "h") showPage("home");
+      if (key === "s") showPage("skills");
+      if (key === "p") showPage("projects");
+      if (key === "t") showPage("trainings");
+      if (key === "c") showPage("contact");
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  });
+
+  const handleTransitionEnd = (id) => (e) => {
+    if (e.propertyName !== "transform") return;
+    if (exitingPage === id) setExitingPage(null);
+  };
+
+  const onDownloadCv = () => {
+    window.open(cvLink, "_blank", "noopener,noreferrer");
+  };
+
+  return (
+    <div>
+      <header>
+        <nav>
+          <button className="burger" id="burger" onClick={() => setMenuOpen(!menuOpen)}>
+            <i className="fa-solid fa-bars"></i>
+          </button>
+
+          <div className="text-logo">
+            <i className="fa-solid fa-code"></i> Abdelrahman
+          </div>
+
+          <ul className={`nav-list ${menuOpen ? "show" : ""}`} id="nav-list">
+            {pages.map((page) => (
+              <li key={page}>
+                <a
+                  href={`#${page}`}
+                  data-target={page}
+                  className={`nav-link ${currentPage === page ? "active" : ""}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    showPage(page);
+                  }}
+                >
+                  {page === "trainings" ? "training" : page}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="nav-actions">
+            <button className="btn-nav" onClick={() => showPage("contact")}>
+              get in touch
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <div id="content">
+        <section
+          id="home"
+          className={`page ${currentPage === "home" ? "active" : ""} ${
+            exitingPage === "home" ? "exit-right" : ""
+          }`}
+          onTransitionEnd={handleTransitionEnd("home")}
+        >
+          <div className="text-main">
+            <h1 className="animated-title">
+              <span>Software</span> <span>Developer</span>
+            </h1>
+            <p>
+              passionate about building full-stack web applications that are
+              innovative, polished, and user-friendly. i combine appealing design
+              with clean code to deliver exceptional digital experiences.
+            </p>
+            <div className="btns">
+              <button className="btn-one" onClick={() => showPage("projects")}>
+                view my work <i className="fa-solid fa-arrow-right"></i>
+              </button>
+              <button id="btn-two" onClick={onDownloadCv}>
+                download cv <i className="fa-solid fa-download"></i>
+              </button>
+            </div>
+          </div>
+
+          <div className="img-main">
+            <img src="/images/face.jpg" alt="Abdelrahman" />
+          </div>
+        </section>
+
+        <section
+          id="skills"
+          className={`page ${currentPage === "skills" ? "active" : ""} ${
+            exitingPage === "skills" ? "exit-right" : ""
+          }`}
+          onTransitionEnd={handleTransitionEnd("skills")}
+        >
+          <h2 className="section-title">My technical toolkit</h2>
+          <p className="section-sub">
+            the technologies and tools i use to bring projects to life.
+          </p>
+
+          <div className="skills-container">
+            <div className="skill-box">
+              <i className="fa-brands fa-html5"></i>
+              <h3>HTML5</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-brands fa-css3-alt"></i>
+              <h3>CSS3</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-brands fa-bootstrap"></i>
+              <h3>BootStrap</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-brands fa-js"></i>
+              <h3>JavaScript</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-brands fa-react"></i>
+              <h3>React.js</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-brands fa-python"></i>
+              <h3>Python</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-brands fa-php"></i>
+              <h3>PHP</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-brands fa-java"></i>
+              <h3>Java</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-solid fa-database"></i>
+              <h3>SQL</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-solid fa-database"></i>
+              <h3>MySQL</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-solid fa-code-branch"></i>
+              <h3>Git</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-brands fa-figma"></i>
+              <h3>Figma</h3>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="projects"
+          className={`page ${currentPage === "projects" ? "active" : ""} ${
+            exitingPage === "projects" ? "exit-right" : ""
+          }`}
+          onTransitionEnd={handleTransitionEnd("projects")}
+        >
+          <h2 className="section-title">Featured Projects</h2>
+          <p className="section-sub">
+            A selection of my favorite projects i've worked on.
+          </p>
+
+          <div className="projects-container">
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <img src="/images/photo3.jpg" alt="Restaurant Website" />
+                </div>
+                <div className="project-back">
+                  <h3>Restaurant Website</h3>
+                  <a href="https://special-dish.netlify.app/" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <img src="/images/photo2.jpg" alt="Smart Booking" />
+                </div>
+                <div className="project-back">
+                  <h3>Smart Booking</h3>
+                  <a href="https://fastest-service-eg.netlify.app/" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <img src="/images/photo1.png" alt="Medical System" />
+                </div>
+                <div className="project-back">
+                  <h3>Medical System</h3>
+                  <a href="https://healthhub-eg.netlify.app/" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <img src="/images/photo4.jpg" alt="INANC" />
+                </div>
+                <div className="project-back">
+                  <h3>INANC</h3>
+                  <a href="https://abdocs2004.github.io/INANCE/" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <img src="/images/photo5.jpg" alt="College Management System" />
+                </div>
+                <div className="project-back">
+                  <h3>College Management System</h3>
+                  <a href="https://github.com/abdocs2004/java" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <img src="/images/photo6.png" alt="Travilifa" />
+                </div>
+                <div className="project-back">
+                  <h3>Travilifa</h3>
+                  <a href="https://abdocs2004.github.io/Travilifa/" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="trainings"
+          className={`page ${currentPage === "trainings" ? "active" : ""} ${
+            exitingPage === "trainings" ? "exit-right" : ""
+          }`}
+          onTransitionEnd={handleTransitionEnd("trainings")}
+        >
+          <h2 className="section-title">Trainings</h2>
+          <p className="section-sub">
+            A commitment to continuous learning and skill development.
+          </p>
+
+          <div className="trainings-container">
+            <div className="training-box">
+              <i className="fa-solid fa-laptop-code"></i>
+              <div className="training-text">
+                <h3>Front-End Development Training</h3>
+                <p>
+                  <strong>Div Academy</strong>
+                </p>
+                <p>Completed hands-on front-end program (HTML, CSS, JS, Bootstrap).</p>
+              </div>
+            </div>
+
+            <div className="training-box">
+              <i className="fa-solid fa-code"></i>
+              <div className="training-text">
+                <h3>Web Design Scholarship – 120 Hours</h3>
+                <p>
+                  <strong>National Telecommunication Institute (NTI)</strong>
+                </p>
+                <p>One-month intensive scholarship covering UI and front-end tools.</p>
+              </div>
+            </div>
+
+            <div className="training-box">
+              <i className="fa-solid fa-briefcase"></i>
+              <div className="training-text">
+                <h3>Freelancing Skills Scholarship</h3>
+                <p>
+                  <strong>ITIDA – MCIT</strong>
+                </p>
+                <p>Training on freelancing platforms, client communication and readiness.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="contact"
+          className={`page ${currentPage === "contact" ? "active" : ""} ${
+            exitingPage === "contact" ? "exit-right" : ""
+          }`}
+          onTransitionEnd={handleTransitionEnd("contact")}
+        >
+          <h2>have a project in mind?</h2>
+          <p>
+            i'm always excited to discuss new projects and creative ideas. feel
+            free to reach out.
+          </p>
+
+          <div className="container-contact">
+            <p>
+              <i className="fa-solid fa-envelope"></i>{" "}
+              <a href="mailto:abdo.cs.2004@gmail.com">abdo.cs.2004@gmail.com</a>
+            </p>
+            <p>
+              <i className="fa-solid fa-phone"></i>{" "}
+              <a href="tel:+201025967218">+20 1025967218</a>
+            </p>
+
+            <div className="social">
+              <a href="https://github.com/abdocs2004" target="_blank" rel="noopener noreferrer">
+                <i className="fa-brands fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/abdelrahman-ibrahim-cs2004/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa-brands fa-linkedin"></i>
+              </a>
+            </div>
+
+            <button className="btn-nav" onClick={onDownloadCv}>
+              download cv <i className="fa-solid fa-download"></i>
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
