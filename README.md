@@ -21,7 +21,7 @@ This project is a Next.js (App Router) conversion of the original static portfol
 npm run dev
 ```
 
-Open http://localhost:3000 in your browser.
+Open [https://portfolio-bay-xi-28.vercel.app/] in your browser.
 
 ## 🖼️ Assets
 The hero image and project thumbnails are represented by styled placeholders.
