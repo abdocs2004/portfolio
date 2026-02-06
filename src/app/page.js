@@ -223,7 +223,7 @@ export default function Home() {
                 </div>
                 <div className="project-back">
                   <h3>Smart Booking</h3>
-                  <a href="https://fastest-service-eg.netlify.app/" target="_blank" rel="noopener noreferrer">
+                  <a href="https://mowaedy.netlify.app/" target="_blank" rel="noopener noreferrer">
                     View Project
                   </a>
                 </div>
@@ -233,11 +233,11 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <img src="/images/photo1.png" alt="Medical System" />
+                  <img src="/images/photo1.jpg" alt="Medical System" />
                 </div>
                 <div className="project-back">
-                  <h3>Medical System</h3>
-                  <a href="https://healthhub-eg.netlify.app/" target="_blank" rel="noopener noreferrer">
+                  <h3>el shafiq construction</h3>
+                  <a href="https://el-shafiq-cement.vercel.app/" target="_blank" rel="noopener noreferrer">
                     View Project
                   </a>
                 </div>
@@ -251,7 +251,7 @@ export default function Home() {
                 </div>
                 <div className="project-back">
                   <h3>INANC</h3>
-                  <a href="https://abdocs2004.github.io/INANCE/" target="_blank" rel="noopener noreferrer">
+                  <a href="https://inance-nine.vercel.app/" target="_blank" rel="noopener noreferrer">
                     View Project
                   </a>
                 </div>
@@ -279,7 +279,7 @@ export default function Home() {
                 </div>
                 <div className="project-back">
                   <h3>Travilifa</h3>
-                  <a href="https://abdocs2004.github.io/Travilifa/" target="_blank" rel="noopener noreferrer">
+                  <a href="https://travilia-hotel.netlify.app/" target="_blank" rel="noopener noreferrer">
                     View Project
                   </a>
                 </div>
