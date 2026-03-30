@@ -1,33 +1,28 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 
 const cvLink =
   "https://drive.google.com/file/d/1xFcEMw-3qYbMzvJTF1kdKdGI75WCw32x/view?usp=drive_link";
+const pages = ["home", "skills", "projects", "trainings", "contact"];
 
 export default function Home() {
-  const pages = useMemo(
-    () => ["home", "skills", "projects", "trainings", "contact"],
-    []
-  );
-  const [currentPage, setCurrentPage] = useState("home");
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (typeof window === "undefined") return "home";
+    const hash = (window.location.hash || "#home").replace("#", "");
+    return pages.includes(hash) ? hash : "home";
+  });
   const [exitingPage, setExitingPage] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const showPage = (targetId) => {
+  const showPage = useCallback((targetId) => {
     if (!pages.includes(targetId)) return;
     if (targetId === currentPage) return;
     setExitingPage(currentPage);
     setCurrentPage(targetId);
     setMenuOpen(false);
-  };
-
-  useEffect(() => {
-    const hash = (window.location.hash || "#home").replace("#", "");
-    if (pages.includes(hash)) {
-      setCurrentPage(hash);
-    }
-  }, [pages]);
+  }, [currentPage]);
 
   useEffect(() => {
     window.history.replaceState(null, "", `#${currentPage}`);
@@ -44,7 +39,7 @@ export default function Home() {
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  });
+  }, [showPage]);
 
   const handleTransitionEnd = (id) => (e) => {
     if (e.propertyName !== "transform") return;
@@ -121,7 +116,13 @@ export default function Home() {
           </div>
 
           <div className="img-main">
-            <img src="/images/face.jpg" alt="Abdelrahman" />
+            <Image
+              src="/images/face.jpg"
+              alt="Abdelrahman"
+              fill
+              priority
+              sizes="(max-width: 768px) 240px, 300px"
+            />
           </div>
         </section>
 
@@ -198,14 +199,14 @@ export default function Home() {
         >
           <h2 className="section-title">Featured Projects</h2>
           <p className="section-sub">
-            A selection of my favorite projects i've worked on.
+            A selection of my favorite projects i&apos;ve worked on.
           </p>
 
           <div className="projects-container">
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <img src="/images/photo3.jpg" alt="Restaurant Website" />
+                  <Image src="/images/photo3.jpg" alt="Restaurant Website" fill sizes="320px" />
                 </div>
                 <div className="project-back">
                   <h3>Restaurant Website</h3>
@@ -219,7 +220,7 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <img src="/images/photo2.jpg" alt="Smart Booking" />
+                  <Image src="/images/photo2.jpg" alt="Smart Booking" fill sizes="320px" />
                 </div>
                 <div className="project-back">
                   <h3>Smart Booking</h3>
@@ -233,7 +234,7 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <img src="/images/photo1.jpg" alt="Medical System" />
+                  <Image src="/images/photo1.png" alt="El Shafiq Construction" fill sizes="320px" />
                 </div>
                 <div className="project-back">
                   <h3>el shafiq construction</h3>
@@ -247,7 +248,7 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <img src="/images/photo4.jpg" alt="INANC" />
+                  <Image src="/images/photo4.jpg" alt="INANC" fill sizes="320px" />
                 </div>
                 <div className="project-back">
                   <h3>INANC</h3>
@@ -261,7 +262,7 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <img src="/images/photo5.jpg" alt="College Management System" />
+                  <Image src="/images/photo5.jpg" alt="College Management System" fill sizes="320px" />
                 </div>
                 <div className="project-back">
                   <h3>College Management System</h3>
@@ -275,7 +276,7 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <img src="/images/photo6.png" alt="Travilifa" />
+                  <Image src="/images/photo6.png" alt="Travilifa" fill sizes="320px" />
                 </div>
                 <div className="project-back">
                   <h3>Travilifa</h3>
@@ -345,7 +346,7 @@ export default function Home() {
         >
           <h2>have a project in mind?</h2>
           <p>
-            i'm always excited to discuss new projects and creative ideas. feel
+            i&apos;m always excited to discuss new projects and creative ideas. feel
             free to reach out.
           </p>
 

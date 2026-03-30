@@ -211,6 +211,7 @@ nav {
 .img-main {
   flex: 0 0 300px;
   height: 300px;
+  position: relative;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -321,6 +322,7 @@ nav {
 }
 
 .project-front {
+  position: relative;
   background: linear-gradient(145deg, #22324b, #0f172a);
 }
 
