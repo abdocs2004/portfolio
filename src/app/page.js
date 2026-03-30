@@ -8,13 +8,21 @@ const cvLink =
 const pages = ["home", "skills", "projects", "trainings", "contact"];
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState(() => {
-    if (typeof window === "undefined") return "home";
-    const hash = (window.location.hash || "#home").replace("#", "");
-    return pages.includes(hash) ? hash : "home";
-  });
+  const [currentPage, setCurrentPage] = useState("home");
   const [exitingPage, setExitingPage] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const hash = (window.location.hash || "#home").replace("#", "");
+    const initialPage = pages.includes(hash) ? hash : "home";
+    if (initialPage === "home") return;
+
+    const rafId = window.requestAnimationFrame(() => {
+      setCurrentPage(initialPage);
+    });
+
+    return () => window.cancelAnimationFrame(rafId);
+  }, []);
 
   const showPage = useCallback((targetId) => {
     if (!pages.includes(targetId)) return;
@@ -117,7 +125,7 @@ export default function Home() {
 
           <div className="img-main">
             <Image
-              src="/images/face.jpg"
+              src="/images/face1.jpg"
               alt="Abdelrahman"
               fill
               priority
@@ -206,7 +214,13 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <Image src="/images/photo3.jpg" alt="Restaurant Website" fill sizes="320px" />
+                  <Image
+                    src="/images/restrunt.jpg"
+                    alt="Restaurant Website"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
                 </div>
                 <div className="project-back">
                   <h3>Restaurant Website</h3>
@@ -220,7 +234,13 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <Image src="/images/photo2.jpg" alt="Smart Booking" fill sizes="320px" />
+                  <Image
+                    src="/images/mowaedy.jpg"
+                    alt="Smart Booking"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
                 </div>
                 <div className="project-back">
                   <h3>Smart Booking</h3>
@@ -234,7 +254,13 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <Image src="/images/photo1.png" alt="El Shafiq Construction" fill sizes="320px" />
+                  <Image
+                    src="/images/elshafiq.jpg"
+                    alt="El Shafiq Construction"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
                 </div>
                 <div className="project-back">
                   <h3>el shafiq construction</h3>
@@ -248,7 +274,13 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <Image src="/images/photo4.jpg" alt="INANC" fill sizes="320px" />
+                  <Image
+                    src="/images/inance.jpg"
+                    alt="INANC"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
                 </div>
                 <div className="project-back">
                   <h3>INANC</h3>
@@ -262,7 +294,13 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <Image src="/images/photo5.jpg" alt="College Management System" fill sizes="320px" />
+                  <Image
+                    src="/images/hospital.jpg"
+                    alt="College Management System"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
                 </div>
                 <div className="project-back">
                   <h3>College Management System</h3>
@@ -276,7 +314,13 @@ export default function Home() {
             <div className="project-cube">
               <div className="project-inner">
                 <div className="project-front">
-                  <Image src="/images/photo6.png" alt="Travilifa" fill sizes="320px" />
+                  <Image
+                    src="/images/photo6.png"
+                    alt="Travilifa"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
                 </div>
                 <div className="project-back">
                   <h3>Travilifa</h3>
