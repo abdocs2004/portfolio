@@ -277,6 +277,12 @@ nav {
   color: var(--accent-a);
 }
 
+.skill-box .skill-icon-svg {
+  width: 32px;
+  height: 32px;
+  color: var(--accent-a);
+}
+
 .skill-box h3 {
   font-size: 16px;
 }

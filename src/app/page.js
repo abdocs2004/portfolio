@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
 const cvLink =
-  "https://drive.google.com/file/d/1xFcEMw-3qYbMzvJTF1kdKdGI75WCw32x/view?usp=drive_link";
+  "https://drive.google.com/file/d/1UdpauIdz7KoauKLKeOsFw1KVKaLWVV8m/view?usp=drive_link";
 const pages = ["home", "skills", "projects", "trainings", "contact"];
 
 export default function Home() {
@@ -109,9 +109,7 @@ export default function Home() {
               <span>Software</span> <span>Developer</span>
             </h1>
             <p>
-              passionate about building full-stack web applications that are
-              innovative, polished, and user-friendly. i combine appealing design
-              with clean code to deliver exceptional digital experiences.
+              Full-Stack Web Developer skilled in React.js, Node.js, and WordPress. Experienced in building responsive websites, customizing themes and plugins, and deploying projects using cPanel.
             </p>
             <div className="btns">
               <button className="btn-one" onClick={() => showPage("projects")}>
@@ -194,6 +192,25 @@ export default function Home() {
             <div className="skill-box">
               <i className="fa-brands fa-figma"></i>
               <h3>Figma</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-brands fa-wordpress"></i>
+              <h3>WordPress</h3>
+            </div>
+            <div className="skill-box">
+              <svg
+                className="skill-icon-svg"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-label="Tailwind CSS"
+                role="img"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 6c-2.667 0-4.333 1.333-5 4 1-.667 1.917-.917 2.75-.75.476.095 1.018.42 1.618.975.976.902 2.107 1.95 4.632 1.95 2.667 0 4.333-1.333 5-4-1 .667-1.917.917-2.75.75-.476-.095-1.018-.42-1.618-.975C15.656 7.048 14.525 6 12 6Zm-5 6c-2.667 0-4.333 1.333-5 4 1-.667 1.917-.917 2.75-.75.476.095 1.018.42 1.618.975.976.902 2.107 1.95 4.632 1.95 2.667 0 4.333-1.333 5-4-1 .667-1.917.917-2.75.75-.476-.095-1.018-.42-1.618-.975C10.656 13.048 9.525 12 7 12Z"
+                />
+              </svg>
+              <h3>Tailwind CSS</h3>
             </div>
           </div>
         </section>
@@ -330,6 +347,26 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <Image
+                    src="/images/alfajr-somix.png"
+                    alt="Alfajr Somix"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
+                </div>
+                <div className="project-back">
+                  <h3>alfajr somix</h3>
+                  <a href="https://alfajrsomix.com/" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -402,6 +439,12 @@ export default function Home() {
             <p>
               <i className="fa-solid fa-phone"></i>{" "}
               <a href="tel:+201025967218">+20 1025967218</a>
+            </p>
+            <p>
+              <i className="fa-brands fa-whatsapp"></i>{" "}
+              <a href="https://wa.me/201025967218" target="_blank" rel="noopener noreferrer">
+                Chat on WhatsApp
+              </a>
             </p>
 
             <div className="social">
