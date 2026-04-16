@@ -367,6 +367,26 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <Image
+                    src="/images/keyframe.png"
+                    alt="keyframe|media production"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
+                </div>
+                <div className="project-back">
+                  <h3>keyframe|media production</h3>
+                  <a href="https://keyframe-lb.com" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
