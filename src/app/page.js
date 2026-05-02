@@ -332,26 +332,6 @@ export default function Home() {
               <div className="project-inner">
                 <div className="project-front">
                   <Image
-                    src="/images/photo6.png"
-                    alt="Travilifa"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>Travilifa</h3>
-                  <a href="https://travilia-hotel.netlify.app/" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
                     src="/images/alfajr-somix.png"
                     alt="Alfajr Somix"
                     width={320}
@@ -387,6 +367,65 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <Image
+                    src="/images/ecommerce.png"
+                    alt="Dashboard Ecommerce"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
+                </div>
+                <div className="project-back">
+                  <h3>Dashboard Ecommerce</h3>
+                  <a href="https://github.com/abdocs2004/Ecommerce-Dashboard.git" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <Image
+                    src="/images/cafe.jpg"
+                    alt="Cafe Landing Page"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
+                </div>
+                <div className="project-back">
+                  <h3>Cafe Landing Page</h3>
+                  <a href="https://cafe-landing-page-snowy.vercel.app/" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+              <div className="project-cube">
+                <div className="project-inner">
+                  <div className="project-front">
+                    <Image
+                      src="/images/kader.png"
+                      alt="Kader Academy | لعرض خدماتك التعليمية"
+                      width={320}
+                      height={220}
+                      className="project-image"
+                    />
+                  </div>
+                  <div className="project-back">
+                    <h3>Kader Academy | لعرض خدماتك التعليمية</h3>
+                    <a href="https://kadertech.netlify.app/arabic" target="_blank" rel="noopener noreferrer">
+                      View Project
+                    </a>
+                  </div>
+                </div>
+              </div>
           </div>
         </section>
 
