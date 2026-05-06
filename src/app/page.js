@@ -109,7 +109,7 @@ export default function Home() {
               <span>Software</span> <span>Developer</span>
             </h1>
             <p>
-              Full-Stack Web Developer skilled in React.js, Node.js, and WordPress. Experienced in building responsive websites, customizing themes and plugins, and deploying projects using cPanel.
+              Full-Stack Developer specializing in React.js, Node.js, Express, and MongoDB. I create responsive landing pages and multi-page web applications, plus WordPress customization. With 1+ year of experience and 10+ completed projects on freelance platforms, I deliver SEO-optimized solutions for top search rankings. Your site will perform perfectly on all devices. I&apos;m always available with free unlimited revisions and ongoing maintenance included. Let me build exactly what you need.
             </p>
             <div className="btns">
               <button className="btn-one" onClick={() => showPage("projects")}>
@@ -170,14 +170,6 @@ export default function Home() {
               <h3>Python</h3>
             </div>
             <div className="skill-box">
-              <i className="fa-brands fa-php"></i>
-              <h3>PHP</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-brands fa-java"></i>
-              <h3>Java</h3>
-            </div>
-            <div className="skill-box">
               <i className="fa-solid fa-database"></i>
               <h3>SQL</h3>
             </div>
@@ -211,6 +203,40 @@ export default function Home() {
                 />
               </svg>
               <h3>Tailwind CSS</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-brands fa-node-js"></i>
+              <h3>Node.js</h3>
+            </div>
+            <div className="skill-box">
+              <svg
+                className="skill-icon-svg"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-label="Express"
+                role="img"
+              >
+                <path
+                  fill="currentColor"
+                  d="M24 18.588a1.528 1.528 0 01-.361 1.11l-2.902 2.902a1.528 1.528 0 01-2.16 0l-5.214-5.213a.476.476 0 00-.67 0L7.74 22.602a1.528 1.528 0 01-2.16 0l-2.902-2.902a1.533 1.533 0 010-2.16L6.584 12 2.578 8.056a1.533 1.533 0 010-2.16l2.902-2.902a1.533 1.533 0 012.16 0l5.214 5.213a.476.476 0 00.67 0l5.214-5.213a1.533 1.533 0 012.16 0l2.902 2.902a1.533 1.533 0 010 2.16L17.416 12l4.006 4.006a1.628 1.628 0 01.578 1.582z"
+                />
+              </svg>
+              <h3>Express</h3>
+            </div>
+            <div className="skill-box">
+              <svg
+                className="skill-icon-svg"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-label="MongoDB"
+                role="img"
+              >
+                <path
+                  fill="currentColor"
+                  d="M17.193 9.166c-1.59-3.56-4.414-5.556-4.414-5.556s-2.824 1.996-4.414 5.556c-.265.624-.5 1.282-.688 1.973-1.605 3.563-1.018 8.206 0 8.851 0 0 5.338 0 5.338-7.94.14-.73.346-1.453.62-2.173.275.72.475 1.443.615 2.173 0 7.94 5.338 7.94 5.338 7.94 2.018-.645 1.605-5.288 0-8.851-.188-.691-.423-1.349-.688-1.973"
+                />
+              </svg>
+              <h3>MongoDB</h3>
             </div>
           </div>
         </section>
@@ -463,6 +489,17 @@ export default function Home() {
 
           <div className="trainings-container">
             <div className="training-box">
+              <i className="fa-solid fa-graduation-cap"></i>
+              <div className="training-text">
+                <h3>Software Development - React Frontend Web Developer</h3>
+                <p>
+                  <strong>Comprehensive Full-Stack Program</strong>
+                </p>
+                <p>Mastery in React, NodeJS, Docker, Git, and modern web development with capstone project.</p>
+              </div>
+            </div>
+
+            <div className="training-box">
               <i className="fa-solid fa-laptop-code"></i>
               <div className="training-text">
                 <h3>Front-End Development Training</h3>
@@ -494,6 +531,8 @@ export default function Home() {
                 <p>Training on freelancing platforms, client communication and readiness.</p>
               </div>
             </div>
+
+            
           </div>
         </section>
 
