@@ -426,6 +426,26 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <Image
+                    src="/images/games.png"
+                    alt="Game | Keys"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
+                </div>
+                <div className="project-back">
+                  <h3>Game | Keys</h3>
+                  <a href="https://game-keys.vercel.app/" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
