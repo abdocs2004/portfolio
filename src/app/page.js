@@ -472,6 +472,26 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <Image
+                    src="/images/gomapview.png"
+                    alt="GoMapView"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
+                </div>
+                <div className="project-back">
+                  <h3>GoMapView</h3>
+                  <a href="https://gomapview.com/en" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
