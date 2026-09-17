@@ -151,11 +151,13 @@ nav {
 }
 
 .animated-title {
-  font-size: 44px;
+  font-size: 32px;
+  line-height: 1.2;
   font-weight: 600;
   text-transform: capitalize;
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .animated-title span {
@@ -521,7 +523,7 @@ nav {
   }
 
   .animated-title {
-    font-size: 34px;
+    font-size: 28px;
   }
 
   .btns button {

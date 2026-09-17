@@ -106,10 +106,11 @@ export default function Home() {
         >
           <div className="text-main">
             <h1 className="animated-title">
-              <span>Software</span> <span>Developer</span>
+              <span>Full-Stack Web Developer</span>
+              <span>React.js &amp; Node.js | WordPress</span>
             </h1>
             <p>
-              Full-Stack Developer specializing in React.js, Node.js, Express, and MongoDB. I create responsive landing pages and multi-page web applications, plus WordPress customization. With 1+ year of experience and 10+ completed projects on freelance platforms, I deliver SEO-optimized solutions for top search rankings. Your site will perform perfectly on all devices. I&apos;m always available with free unlimited revisions and ongoing maintenance included. Let me build exactly what you need.
+              I&apos;m a Computer Science student expected to graduate in 2027, and a Full-Stack Web Developer. My main stack is <strong>React.js</strong> on the frontend and <strong>Node.js</strong> with <strong>Express.js</strong> on the backend, connected through REST APIs. I&apos;m comfortable working with both <strong>SQL</strong> and <strong>NoSQL</strong> databases, and I&apos;ve deployed projects on several hosting platforms, including Vercel, Netlify, Railway, Render, and Hostinger. Alongside application development, I have around a year of practical experience building websites with <strong>WordPress</strong> and <strong>Elementor</strong>. I&apos;ve completed more than 5 freelance projects, and I&apos;m continuously working on improving my skills as a developer.
             </p>
             <div className="btns">
               <button className="btn-one" onClick={() => showPage("projects")}>
@@ -172,6 +173,10 @@ export default function Home() {
             <div className="skill-box">
               <i className="fa-solid fa-database"></i>
               <h3>SQL</h3>
+            </div>
+            <div className="skill-box">
+              <i className="fa-solid fa-database"></i>
+              <h3>PostgreSQL</h3>
             </div>
             <div className="skill-box">
               <i className="fa-solid fa-database"></i>
@@ -298,6 +303,46 @@ export default function Home() {
               <div className="project-inner">
                 <div className="project-front">
                   <Image
+                    src="/images/clinic-management-system-cover.png"
+                    alt="Clinic Management System"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
+                </div>
+                <div className="project-back">
+                  <h3>Clinic Management System</h3>
+                  <a href="https://github.com/abdocs2004/Clinic-Management-System" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <Image
+                    src="/images/Hugra.png"
+                    alt="Hugra Student housing"
+                    width={320}
+                    height={220}
+                    className="project-image"
+                  />
+                </div>
+                <div className="project-back">
+                  <h3>Hugra Student housing</h3>
+                  <a href="https://github.com/abdocs2004/Clinic-Management-System" target="_blank" rel="noopener noreferrer">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="project-cube">
+              <div className="project-inner">
+                <div className="project-front">
+                  <Image
                     src="/images/elshafiq.jpg"
                     alt="El Shafiq Construction"
                     width={320}
@@ -314,45 +359,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/inance.jpg"
-                    alt="INANC"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>INANC</h3>
-                  <a href="https://inance-nine.vercel.app/" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
 
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/hospital.jpg"
-                    alt="College Management System"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>College Management System</h3>
-                  <a href="https://github.com/abdocs2004/java" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
 
             <div className="project-cube">
               <div className="project-inner">
@@ -393,26 +400,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/ecommerce.png"
-                    alt="Dashboard Ecommerce"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>Dashboard Ecommerce</h3>
-                  <a href="https://github.com/abdocs2004/Ecommerce-Dashboard.git" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
+            
 
             <div className="project-cube">
               <div className="project-inner">
@@ -511,33 +499,44 @@ export default function Home() {
             <div className="training-box">
               <i className="fa-solid fa-graduation-cap"></i>
               <div className="training-text">
-                <h3>Software Development - React Frontend Web Developer</h3>
+                <h3>DEPI - Digital Egypt Pioneers Initiative</h3>
                 <p>
-                  <strong>Comprehensive Full-Stack Program</strong>
+                  <strong>رواد مصر الرقمية | Full-Stack (Node.js) track</strong>
                 </p>
-                <p>Mastery in React, NodeJS, Docker, Git, and modern web development with capstone project.</p>
+                <p>Training program under the Ministry of Communications and Information Technology (MCIT).</p>
               </div>
             </div>
 
             <div className="training-box">
               <i className="fa-solid fa-laptop-code"></i>
               <div className="training-text">
-                <h3>Front-End Development Training</h3>
+                <h3>NTI - National Telecommunication Institute</h3>
                 <p>
-                  <strong>Div Academy</strong>
+                  <strong>رواد / منحة NTI | Front-End track</strong>
                 </p>
-                <p>Completed hands-on front-end program (HTML, CSS, JS, Bootstrap).</p>
+                <p>Training and scholarship program from the Ministry of Communications and Information Technology.</p>
               </div>
             </div>
 
             <div className="training-box">
               <i className="fa-solid fa-code"></i>
               <div className="training-text">
-                <h3>Web Design Scholarship – 120 Hours</h3>
+                <h3>DIV Academy</h3>
                 <p>
-                  <strong>National Telecommunication Institute (NTI)</strong>
+                  <strong>Front-End track</strong>
                 </p>
-                <p>One-month intensive scholarship covering UI and front-end tools.</p>
+                <p>Completed a Front-End track.</p>
+              </div>
+            </div>
+
+            <div className="training-box">
+              <i className="fa-solid fa-server"></i>
+              <div className="training-text">
+                <h3>Orb Scope Academy</h3>
+                <p>
+                  <strong>Backend Node.js track</strong>
+                </p>
+                <p>Completed a Backend Node.js track.</p>
               </div>
             </div>
 
