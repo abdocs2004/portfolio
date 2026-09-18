@@ -1,33 +1,60 @@
-# 📌 Portfolio (Next.js + Tailwind)
+# Abdelrahman Ibrahim — Portfolio
 
-This project is a Next.js (App Router) conversion of the original static portfolio site. It preserves the overall layout, transitions, and styling while moving to a React-based structure.
+A premium, multi-page Full-Stack Developer portfolio built with Next.js (App Router).
 
-## ✅ Features
-- Fixed navigation with section transitions
-- Keyboard shortcuts (H, S, P, T, C)
-- 3D project cards
-- Animated headings
-- Responsive burger menu
-- CV download buttons
+## Stack
+- Next.js 16 (App Router)
+- React 19
+- Tailwind CSS v4
+- Self-hosted variable fonts (Space Grotesk + Inter) — no external font requests
 
-## 🛠️ Tech Stack
-- Next.js (App Router)
-- React
-- Tailwind CSS (base) + custom global styles
-- Font Awesome (icons via CDN)
+## Structure
+```
+src/
+├── app/
+│   ├── page.js              Home (hero, What I Build, featured projects, Build Process, CTA)
+│   ├── about/page.js         About + Training & Education
+│   ├── skills/page.js        Full tech stack, grouped by category
+│   ├── projects/page.js      Project grid with category filter
+│   ├── projects/[slug]/page.js   Case study pages (auto-generated for projects with caseStudy: true)
+│   ├── contact/page.js        Contact methods
+│   ├── sitemap.js / robots.js
+│   └── fonts/                 Self-hosted .ttf font files
+├── components/                 Reusable UI (Navbar, Footer, ProjectCard, BuildProcess, TechIcon, ...)
+└── data/                        ← Edit content here, not in components
+    ├── site.js                  Name, contact info, links — single source of truth
+    ├── projects.js               All project content + images
+    ├── skills.js                  Skills grouped by category
+    ├── experience.js              Training & education entries
+    ├── process.js                 The 7-step "Build Process" section content
+    └── whatIBuild.js               "What I Build" homepage grid
+```
 
-## ▶️ Run the project
+## Editing content
+Almost everything is data-driven — you should rarely need to touch a component:
+- **Contact info / links**: `src/data/site.js`
+- **Add or edit a project**: `src/data/projects.js` — set `caseStudy: true` to automatically get a dedicated `/projects/<slug>` page
+- **Skills**: `src/data/skills.js`
+- **Training entries**: `src/data/experience.js`
+
+## Replacing placeholder images
+Every image referenced in `src/data/projects.js` and the homepage/about photo lives under `public/images/`. The current files are generated placeholder mockups (browser-chrome style cards with an icon and title) — replace them directly with real screenshots/photos using the **same filenames**, and nothing else needs to change:
+- `public/images/profile-photo.png` — your photo
+- `public/images/projects/<slug>.png` — one per project (filenames match each project's `slug` in `projects.js`)
+
+Recommended real dimensions: profile photo square (e.g. 900×900), project screenshots 4:3 (e.g. 1200×900).
+
+## Run locally
 ```bash
+npm install
 npm run dev
 ```
 
-Open [https://portfolio-bay-xi-28.vercel.app/] in your browser.
+## Build
+```bash
+npm run build
+npm start
+```
 
-## 🖼️ Assets
-The hero image and project thumbnails are represented by styled placeholders.
-Replace them with real assets by adding image files in the public folder and updating the markup in src/app/page.js.
-
-## 📂 Key Files
-- src/app/page.js — main page layout and navigation logic
-- src/app/globals.css — migrated global styles
-- src/app/layout.js — global layout + icon CDN
+## Deploy
+Deploy as a standard Next.js app (e.g. Vercel). No environment variables are required — all content lives in `src/data/`.

@@ -1,608 +1,134 @@
-"use client";
-
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
-
-const cvLink =
-  "https://drive.google.com/file/d/1UdpauIdz7KoauKLKeOsFw1KVKaLWVV8m/view?usp=drive_link";
-const pages = ["home", "skills", "projects", "trainings", "contact"];
+import Link from "next/link";
+import Reveal from "../components/Reveal";
+import SectionHeading from "../components/SectionHeading";
+import ProjectCard from "../components/ProjectCard";
+import WhatIBuild from "../components/WhatIBuild";
+import BuildProcess from "../components/BuildProcess";
+import ContactCTA from "../components/ContactCTA";
+import { ArrowRightIcon, DownloadIcon, GithubIcon, LinkedinIcon } from "../components/icons/UiIcons";
+import { site } from "../data/site";
+import { featuredProjects } from "../data/projects";
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState("home");
-  const [exitingPage, setExitingPage] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const hash = (window.location.hash || "#home").replace("#", "");
-    const initialPage = pages.includes(hash) ? hash : "home";
-    if (initialPage === "home") return;
-
-    const rafId = window.requestAnimationFrame(() => {
-      setCurrentPage(initialPage);
-    });
-
-    return () => window.cancelAnimationFrame(rafId);
-  }, []);
-
-  const showPage = useCallback((targetId) => {
-    if (!pages.includes(targetId)) return;
-    if (targetId === currentPage) return;
-    setExitingPage(currentPage);
-    setCurrentPage(targetId);
-    setMenuOpen(false);
-  }, [currentPage]);
-
-  useEffect(() => {
-    window.history.replaceState(null, "", `#${currentPage}`);
-  }, [currentPage]);
-
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      const key = e.key.toLowerCase();
-      if (key === "h") showPage("home");
-      if (key === "s") showPage("skills");
-      if (key === "p") showPage("projects");
-      if (key === "t") showPage("trainings");
-      if (key === "c") showPage("contact");
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [showPage]);
-
-  const handleTransitionEnd = (id) => (e) => {
-    if (e.propertyName !== "transform") return;
-    if (exitingPage === id) setExitingPage(null);
-  };
-
-  const onDownloadCv = () => {
-    window.open(cvLink, "_blank", "noopener,noreferrer");
-  };
-
   return (
-    <div>
-      <header>
-        <nav>
-          <button className="burger" id="burger" onClick={() => setMenuOpen(!menuOpen)}>
-            <i className="fa-solid fa-bars"></i>
-          </button>
-
-          <div className="text-logo">
-            <i className="fa-solid fa-code"></i> Abdelrahman
-          </div>
-
-          <ul className={`nav-list ${menuOpen ? "show" : ""}`} id="nav-list">
-            {pages.map((page) => (
-              <li key={page}>
-                <a
-                  href={`#${page}`}
-                  data-target={page}
-                  className={`nav-link ${currentPage === page ? "active" : ""}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    showPage(page);
-                  }}
-                >
-                  {page === "trainings" ? "training" : page}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <div className="nav-actions">
-            <button className="btn-nav" onClick={() => showPage("contact")}>
-              get in touch
-            </button>
-          </div>
-        </nav>
-      </header>
-
-      <div id="content">
-        <section
-          id="home"
-          className={`page ${currentPage === "home" ? "active" : ""} ${
-            exitingPage === "home" ? "exit-right" : ""
-          }`}
-          onTransitionEnd={handleTransitionEnd("home")}
-        >
-          <div className="text-main">
-            <h1 className="animated-title">
-              <span>Full-Stack Web Developer</span>
-              <span>React.js &amp; Node.js | WordPress</span>
-            </h1>
-            <p>
-              I&apos;m a Computer Science student expected to graduate in 2027, and a Full-Stack Web Developer. My main stack is <strong>React.js</strong> on the frontend and <strong>Node.js</strong> with <strong>Express.js</strong> on the backend, connected through REST APIs. I&apos;m comfortable working with both <strong>SQL</strong> and <strong>NoSQL</strong> databases, and I&apos;ve deployed projects on several hosting platforms, including Vercel, Netlify, Railway, Render, and Hostinger. Alongside application development, I have around a year of practical experience building websites with <strong>WordPress</strong> and <strong>Elementor</strong>. I&apos;ve completed more than 5 freelance projects, and I&apos;m continuously working on improving my skills as a developer.
-            </p>
-            <div className="btns">
-              <button className="btn-one" onClick={() => showPage("projects")}>
-                view my work <i className="fa-solid fa-arrow-right"></i>
-              </button>
-              <button id="btn-two" onClick={onDownloadCv}>
-                download cv <i className="fa-solid fa-download"></i>
-              </button>
-            </div>
-          </div>
-
-          <div className="img-main">
-            <Image
-              src="/images/face1.jpg"
-              alt="Abdelrahman"
-              fill
-              priority
-              sizes="(max-width: 768px) 240px, 300px"
-            />
-          </div>
-        </section>
-
-        <section
-          id="skills"
-          className={`page ${currentPage === "skills" ? "active" : ""} ${
-            exitingPage === "skills" ? "exit-right" : ""
-          }`}
-          onTransitionEnd={handleTransitionEnd("skills")}
-        >
-          <h2 className="section-title">My technical toolkit</h2>
-          <p className="section-sub">
-            the technologies and tools i use to bring projects to life.
-          </p>
-
-          <div className="skills-container">
-            <div className="skill-box">
-              <i className="fa-brands fa-html5"></i>
-              <h3>HTML5</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-brands fa-css3-alt"></i>
-              <h3>CSS3</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-brands fa-bootstrap"></i>
-              <h3>BootStrap</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-brands fa-js"></i>
-              <h3>JavaScript</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-brands fa-react"></i>
-              <h3>React.js</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-brands fa-python"></i>
-              <h3>Python</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-solid fa-database"></i>
-              <h3>SQL</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-solid fa-database"></i>
-              <h3>PostgreSQL</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-solid fa-database"></i>
-              <h3>MySQL</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-solid fa-code-branch"></i>
-              <h3>Git</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-brands fa-figma"></i>
-              <h3>Figma</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-brands fa-wordpress"></i>
-              <h3>WordPress</h3>
-            </div>
-            <div className="skill-box">
-              <svg
-                className="skill-icon-svg"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-label="Tailwind CSS"
-                role="img"
-              >
-                <path
-                  fill="currentColor"
-                  d="M12 6c-2.667 0-4.333 1.333-5 4 1-.667 1.917-.917 2.75-.75.476.095 1.018.42 1.618.975.976.902 2.107 1.95 4.632 1.95 2.667 0 4.333-1.333 5-4-1 .667-1.917.917-2.75.75-.476-.095-1.018-.42-1.618-.975C15.656 7.048 14.525 6 12 6Zm-5 6c-2.667 0-4.333 1.333-5 4 1-.667 1.917-.917 2.75-.75.476.095 1.018.42 1.618.975.976.902 2.107 1.95 4.632 1.95 2.667 0 4.333-1.333 5-4-1 .667-1.917.917-2.75.75-.476-.095-1.018-.42-1.618-.975C10.656 13.048 9.525 12 7 12Z"
-                />
-              </svg>
-              <h3>Tailwind CSS</h3>
-            </div>
-            <div className="skill-box">
-              <i className="fa-brands fa-node-js"></i>
-              <h3>Node.js</h3>
-            </div>
-            <div className="skill-box">
-              <svg
-                className="skill-icon-svg"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-label="Express"
-                role="img"
-              >
-                <path
-                  fill="currentColor"
-                  d="M24 18.588a1.528 1.528 0 01-.361 1.11l-2.902 2.902a1.528 1.528 0 01-2.16 0l-5.214-5.213a.476.476 0 00-.67 0L7.74 22.602a1.528 1.528 0 01-2.16 0l-2.902-2.902a1.533 1.533 0 010-2.16L6.584 12 2.578 8.056a1.533 1.533 0 010-2.16l2.902-2.902a1.533 1.533 0 012.16 0l5.214 5.213a.476.476 0 00.67 0l5.214-5.213a1.533 1.533 0 012.16 0l2.902 2.902a1.533 1.533 0 010 2.16L17.416 12l4.006 4.006a1.628 1.628 0 01.578 1.582z"
-                />
-              </svg>
-              <h3>Express</h3>
-            </div>
-            <div className="skill-box">
-              <svg
-                className="skill-icon-svg"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-label="MongoDB"
-                role="img"
-              >
-                <path
-                  fill="currentColor"
-                  d="M17.193 9.166c-1.59-3.56-4.414-5.556-4.414-5.556s-2.824 1.996-4.414 5.556c-.265.624-.5 1.282-.688 1.973-1.605 3.563-1.018 8.206 0 8.851 0 0 5.338 0 5.338-7.94.14-.73.346-1.453.62-2.173.275.72.475 1.443.615 2.173 0 7.94 5.338 7.94 5.338 7.94 2.018-.645 1.605-5.288 0-8.851-.188-.691-.423-1.349-.688-1.973"
-                />
-              </svg>
-              <h3>MongoDB</h3>
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="projects"
-          className={`page ${currentPage === "projects" ? "active" : ""} ${
-            exitingPage === "projects" ? "exit-right" : ""
-          }`}
-          onTransitionEnd={handleTransitionEnd("projects")}
-        >
-          <h2 className="section-title">Featured Projects</h2>
-          <p className="section-sub">
-            A selection of my favorite projects i&apos;ve worked on.
-          </p>
-
-          <div className="projects-container">
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/restrunt.jpg"
-                    alt="Restaurant Website"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>Restaurant Website</h3>
-                  <a href="https://special-dish.netlify.app/" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/mowaedy.jpg"
-                    alt="Smart Booking"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>Smart Booking</h3>
-                  <a href="https://mowaedy.netlify.app/" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/clinic-management-system-cover.png"
-                    alt="Clinic Management System"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>Clinic Management System</h3>
-                  <a href="https://github.com/abdocs2004/Clinic-Management-System" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/Hugra.png"
-                    alt="Hugra Student housing"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>Hugra Student housing</h3>
-                  <a href="https://github.com/abdocs2004/Clinic-Management-System" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/elshafiq.jpg"
-                    alt="El Shafiq Construction"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>el shafiq construction</h3>
-                  <a href="https://el-shafiq-cement.vercel.app/" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/alfajr-somix.png"
-                    alt="Alfajr Somix"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>alfajr somix</h3>
-                  <a href="https://alfajrsomix.com/" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/keyframe.png"
-                    alt="keyframe|media production"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>keyframe|media production</h3>
-                  <a href="https://keyframe-lb.com" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/cafe.jpg"
-                    alt="Cafe Landing Page"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>Cafe Landing Page</h3>
-                  <a href="https://cafe-landing-page-snowy.vercel.app/" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
-              <div className="project-cube">
-                <div className="project-inner">
-                  <div className="project-front">
-                    <Image
-                      src="/images/kader.png"
-                      alt="Kader Academy | لعرض خدماتك التعليمية"
-                      width={320}
-                      height={220}
-                      className="project-image"
-                    />
-                  </div>
-                  <div className="project-back">
-                    <h3>Kader Academy | لعرض خدماتك التعليمية</h3>
-                    <a href="https://kadertech.netlify.app/arabic" target="_blank" rel="noopener noreferrer">
-                      View Project
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/games.png"
-                    alt="Game | Keys"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>Game | Keys</h3>
-                  <a href="https://game-keys.vercel.app/" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-cube">
-              <div className="project-inner">
-                <div className="project-front">
-                  <Image
-                    src="/images/gomapview.png"
-                    alt="GoMapView"
-                    width={320}
-                    height={220}
-                    className="project-image"
-                  />
-                </div>
-                <div className="project-back">
-                  <h3>GoMapView</h3>
-                  <a href="https://gomapview.com/en" target="_blank" rel="noopener noreferrer">
-                    View Project
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="trainings"
-          className={`page ${currentPage === "trainings" ? "active" : ""} ${
-            exitingPage === "trainings" ? "exit-right" : ""
-          }`}
-          onTransitionEnd={handleTransitionEnd("trainings")}
-        >
-          <h2 className="section-title">Trainings</h2>
-          <p className="section-sub">
-            A commitment to continuous learning and skill development.
-          </p>
-
-          <div className="trainings-container">
-            <div className="training-box">
-              <i className="fa-solid fa-graduation-cap"></i>
-              <div className="training-text">
-                <h3>DEPI - Digital Egypt Pioneers Initiative</h3>
-                <p>
-                  <strong>رواد مصر الرقمية | Full-Stack (Node.js) track</strong>
-                </p>
-                <p>Training program under the Ministry of Communications and Information Technology (MCIT).</p>
-              </div>
-            </div>
-
-            <div className="training-box">
-              <i className="fa-solid fa-laptop-code"></i>
-              <div className="training-text">
-                <h3>NTI - National Telecommunication Institute</h3>
-                <p>
-                  <strong>رواد / منحة NTI | Front-End track</strong>
-                </p>
-                <p>Training and scholarship program from the Ministry of Communications and Information Technology.</p>
-              </div>
-            </div>
-
-            <div className="training-box">
-              <i className="fa-solid fa-code"></i>
-              <div className="training-text">
-                <h3>DIV Academy</h3>
-                <p>
-                  <strong>Front-End track</strong>
-                </p>
-                <p>Completed a Front-End track.</p>
-              </div>
-            </div>
-
-            <div className="training-box">
-              <i className="fa-solid fa-server"></i>
-              <div className="training-text">
-                <h3>Orb Scope Academy</h3>
-                <p>
-                  <strong>Backend Node.js track</strong>
-                </p>
-                <p>Completed a Backend Node.js track.</p>
-              </div>
-            </div>
-
-            <div className="training-box">
-              <i className="fa-solid fa-briefcase"></i>
-              <div className="training-text">
-                <h3>Freelancing Skills Scholarship</h3>
-                <p>
-                  <strong>ITIDA – MCIT</strong>
-                </p>
-                <p>Training on freelancing platforms, client communication and readiness.</p>
-              </div>
-            </div>
-
-            
-          </div>
-        </section>
-
-        <section
-          id="contact"
-          className={`page ${currentPage === "contact" ? "active" : ""} ${
-            exitingPage === "contact" ? "exit-right" : ""
-          }`}
-          onTransitionEnd={handleTransitionEnd("contact")}
-        >
-          <h2>have a project in mind?</h2>
-          <p>
-            i&apos;m always excited to discuss new projects and creative ideas. feel
-            free to reach out.
-          </p>
-
-          <div className="container-contact">
-            <p>
-              <i className="fa-solid fa-envelope"></i>{" "}
-              <a href="mailto:abdo.cs.2004@gmail.com">abdo.cs.2004@gmail.com</a>
-            </p>
-            <p>
-              <i className="fa-solid fa-phone"></i>{" "}
-              <a href="tel:+201025967218">+20 1025967218</a>
-            </p>
-            <p>
-              <i className="fa-brands fa-whatsapp"></i>{" "}
-              <a href="https://wa.me/201025967218" target="_blank" rel="noopener noreferrer">
-                Chat on WhatsApp
+    <>
+      {/* Hero */}
+      <section className="container-x page-shell">
+        <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-16 lg:gap-20 items-center">
+          <div>
+            <Reveal>
+              <div className="eyebrow mb-5">Full-Stack Web Developer</div>
+            </Reveal>
+            <Reveal delay={80}>
+              <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-6">
+                Hi, I&apos;m Abdelrahman Ibrahim.
+                <br />
+                I build <span className="text-gradient">real, working</span> web products.
+              </h1>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="text-muted text-lg leading-relaxed max-w-xl mb-9">
+                I design and build modern, scalable web applications with React.js and Node.js —
+                and deliver business websites with WordPress when that&apos;s the right fit. Final-year
+                Computer Science student, and hands-on with more than 5 freelance projects so far.
+              </p>
+            </Reveal>
+            <Reveal delay={240} className="flex flex-wrap items-center gap-4">
+              <Link href="/projects" className="btn btn-primary">
+                View My Work <ArrowRightIcon size={18} />
+              </Link>
+              <Link href="/contact" className="btn btn-outline">
+                Let&apos;s Work Together
+              </Link>
+            </Reveal>
+            <Reveal delay={300} className="flex items-center gap-5 mt-50">
+              <a href={site.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-muted hover:text-accent transition-colors">
+                <GithubIcon size={22} />
               </a>
-            </p>
-
-            <div className="social">
-              <a href="https://github.com/abdocs2004" target="_blank" rel="noopener noreferrer">
-                <i className="fa-brands fa-github"></i>
+              <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted hover:text-accent transition-colors">
+                <LinkedinIcon size={22} />
               </a>
               <a
-                href="https://www.linkedin.com/in/abdelrahman-ibrahim-cs2004/"
+                href={site.cvLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted hover:text-accent transition-colors"
               >
-                <i className="fa-brands fa-linkedin"></i>
+                <DownloadIcon size={18} /> Download CV
               </a>
-            </div>
-
-            <button className="btn-nav" onClick={onDownloadCv}>
-              download cv <i className="fa-solid fa-download"></i>
-            </button>
+            </Reveal>
           </div>
-        </section>
-      </div>
-    </div>
+
+          <Reveal delay={160} className="relative mx-auto w-full max-w-85">
+            <div className="absolute -inset-4 rounded-4xl border border-line" />
+            <div className="relative aspect-square rounded-[1.75rem] overflow-hidden card">
+              <Image
+                src="/images/profile-photo.jpg"
+                alt="Portrait of Abdelrahman Ibrahim"
+                fill
+                priority
+                sizes="(max-width: 768px) 260px, 340px"
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-5 -left-5 card px-5 py-3.5">
+              <div className="text-xs text-muted mb-0.5">Graduating</div>
+              <div className="font-display font-bold text-lg leading-none">{site.graduationYear}</div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* What I Build */}
+      <section className="container-x home-section">
+        <SectionHeading
+          number="01"
+          label="Capabilities"
+          title="What I Build"
+          description="A quick overview so you can see what fits your project — without reading every case study."
+        />
+        <div className="mt-12">
+          <WhatIBuild />
+        </div>
+      </section>
+
+      {/* Featured Projects */}
+      <section className="container-x home-section">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14">
+          <SectionHeading number="02" label="Selected Work" title="Featured Projects" />
+          <Reveal>
+            <Link href="/projects" className="inline-flex items-center gap-1.5 text-sm font-semibold hover:text-accent transition-colors">
+              View all projects <ArrowRightIcon size={16} />
+            </Link>
+          </Reveal>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {featuredProjects.map((project, i) => (
+            <Reveal key={project.slug} delay={i * 80}>
+              <ProjectCard project={project} priority={i === 0} />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Build Process — signature interactive section */}
+      <section className="container-x home-section">
+        <SectionHeading
+          number="03"
+          label="How I Work"
+          title="From Idea to Deployment"
+          description="A project moves through the same seven stages whether it's a full-stack app or a business website — click a stage to see how."
+        />
+        <div className="mt-12">
+          <BuildProcess />
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="container-x home-section">
+        <ContactCTA />
+      </section>
+    </>
   );
 }
